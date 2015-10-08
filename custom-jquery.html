@@ -297,32 +297,28 @@
 				</section>
 			</div>
 <script>
-window.addEventListener("DOMContentLoaded", lazyLoadImages);
-window.addEventListener("load", lazyLoadImages);
-window.addEventListener("resize", lazyLoadImages);
-window.addEventListener("scroll", lazyLoadImages);
-
-function lazyLoadImages() {;
-  var images = document.querySelectorAll("#main-wrapper img[data-src]"),
-      item;
+$(window).on('DOMContentLoaded load resize scroll', function () {;
+  var images = $("#main-wrapper img[data-src]");
   // load images that have entered the viewport
-  [].forEach.call(images, function (item) {
-    if (isElementInViewport(item)) {
-      item.setAttribute("src",item.getAttribute("data-src"));
-      item.removeAttribute("data-src")
+  $(images).each(function (index) {
+    if (isElementInViewport(this)) {
+      $(this).attr("src",$(this).attr("data-src"));
+			$(this).removeAttr("data-src");
     }
   })
   // if all the images are loaded, stop calling the handler
   if (images.length == 0) {
-    window.removeEventListener("DOMContentLoaded", lazyLoadImages);
-    window.removeEventListener("load", lazyLoadImages);
-    window.removeEventListener("resize", lazyLoadImages);
-    window.removeEventListener("scroll", lazyLoadImages);
+    $(window).off('DOMContentLoaded load resize scroll')
   }
-}
+})
 
 // source: http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
 function isElementInViewport (el) {
+
+    //special bonus for those using jQuery
+    if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+    }
 
     var rect = el.getBoundingClientRect();
 
