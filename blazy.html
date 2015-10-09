@@ -292,10 +292,11 @@
 					</div>
 				</section>
 			</div>
+	<script src="js/init.js"></script>
   <script src="js/blazy.js"></script>
-  <script src="js/init.js"></script>
   <script>
 		var bLazy = new Blazy({
+			offset: 50,
 			success: function(e){
       	console.log($(e).attr("src") + " loaded" );
       },

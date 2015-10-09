@@ -299,7 +299,7 @@
 <script src="https://bs-static.cdn.telerik.com/1.5.6/everlive.all.min.js"></script>
 <script>
 var el = new Everlive({
-    apiKey: "h5tc7Cws1Qi9oluI",
+    apiKey: "your-api-code",
     scheme: "https"
 });
 
@@ -316,8 +316,6 @@ function lazyLoadImages() {
   [].forEach.call(images, function (item) {
     if (isElementInViewport(item)) {
 			el.helpers.html.process(item, {}, successHandler, errorHandler);
-      //item.setAttribute("src",item.getAttribute("data-src"));
-      // item.removeAttribute("data-src")
     }
   })
   // if all the images are loaded, stop calling the handler
